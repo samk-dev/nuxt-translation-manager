@@ -44,14 +44,10 @@ export default defineNuxtModule<ModuleOptions>({
     const csvFilePath = `${options.langDir}/${options.translationFileName}.csv`
     const csvFileFullPath = resolve(nuxt.options.srcDir, csvFilePath)
 
-    console.log('🌐', csvFilePath)
-    console.log('🌐', csvFileFullPath)
-
     const outputDir = options.outputDir
       ? resolve(options.outputDir)
       : resolve(nuxt.options.srcDir, options.langDir as string)
-    // resolve(nuxt.options.srcDir, options.langDir as string)
-    console.log('🌐', outputDir)
+
     try {
       await generateLocales(csvFileFullPath, outputDir)
     } catch (error) {
