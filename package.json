@@ -35,7 +35,9 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.8.2"
+    "@nuxt/kit": "^3.8.2",
+    "consola": "^3.2.3",
+    "csv-parser": "^3.0.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -46,7 +48,6 @@
     "@samk-dev/prettier-config": "^1.0.4",
     "@types/node": "^20.10.3",
     "changelogen": "^0.5.5",
-    "csv-parser": "^3.0.0",
     "nuxt": "^3.8.2",
     "vitest": "^0.33.0"
   }
