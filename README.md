@@ -5,6 +5,8 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
+[![temp-Image4v-TX6-F.jpg](https://i.postimg.cc/jqn4w5y1/temp-Image4v-TX6-F.jpg)](https://postimg.cc/3W7vz3Sj)
+
 Simple and easy to use translation manager for `nuxt` and `nuxt-i18n` that allows to manage translations from a single CSV file.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
@@ -53,7 +55,31 @@ login,"Login","Acceder","Accedir"' > path-to-your-langDir/translations.csv
 # replace `path-to-your-langDir`
 ```
 
+This will generate a CSV file that looks like this:
+
+| Key     | en-US          | fr         | de              |
+|---------|----------------|------------|-----------------|
+| hello   | Hello          | Bonjour    | Hallo           |
+| goodbye | Goodbye        | Au revoir  | Auf Wiedersehen |
+| thanks  | Thanks         | Merci      | Danke           |
+
+**Be sure to use the format** `lang-code` in the header row e.g. `es-ES`
+
+**Be sure to set the delimiter to comma in your csv editor** `,`
+
 ✨ Tip: you can use [Edit CSV Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=janisdd.vscode-edit-csv) to manage your csv file inside of `vscode`
+
+<details>
+  <summary>View raw csv code</summary>
+
+  ```csv
+  Key,"English, en-US","French, fr","German, de"
+  hello,"Hello","Bonjour","Hallo"
+  goodbye,"Goodbye","Au revoir","Auf Wiedersehen"
+  thanks,"Thanks","Merci","Danke"
+  ```
+
+</details>
 
 ## Options
 
