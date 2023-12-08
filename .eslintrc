@@ -1,0 +1,4 @@
+{
+  "root": true,
+  "extends": ["@samk-dev/eslint-config"]
+}

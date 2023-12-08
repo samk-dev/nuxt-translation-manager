@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      time: "00:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - sam k
+    assignees:
+      - sam k
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope

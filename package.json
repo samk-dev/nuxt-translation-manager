@@ -1,0 +1,53 @@
+{
+  "name": "nuxt-translation-manager",
+  "version": "1.0.0",
+  "description": "Simple and easy to use translation manager for nuxt and nuxt-i18n that allows to manage translations from a single CSV file.",
+  "repository": "samk-dev/nuxt-translation-manager",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bugs": "https://github.com/samk-dev/nuxt-translation-manager/issues",
+  "keywords": [
+    "nuxt",
+    "nuxtjs",
+    "nuxt-module",
+    "i18n"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "release": "pnpm run lint && pnpm run test && pnpm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.8.2"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxt/module-builder": "^0.5.4",
+    "@nuxt/schema": "^3.8.2",
+    "@nuxt/test-utils": "^3.8.1",
+    "@samk-dev/eslint-config": "^1.0.6",
+    "@samk-dev/prettier-config": "^1.0.4",
+    "@types/node": "^20.10.3",
+    "changelogen": "^0.5.5",
+    "csv-parser": "^3.0.0",
+    "nuxt": "^3.8.2",
+    "vitest": "^0.33.0"
+  }
+}
