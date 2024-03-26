@@ -1,3 +1,4 @@
+import { relative, resolve } from 'node:path'
 import { defineNuxtModule, createResolver } from '@nuxt/kit'
 import { name, version } from '../package.json'
 import generateLocales from './generateLocales'
@@ -55,6 +56,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     nuxt.hook('builder:watch', async (_event, path) => {
+      path = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path))
       if (path === csvFilePath) {
         try {
           await generateLocales(csvFileFullPath, outputDir)
