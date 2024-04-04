@@ -1,5 +1,5 @@
 import { fileURLToPath } from 'node:url'
-import fs from 'fs'
+import fs from 'node:fs'
 import { describe, it, expect } from 'vitest'
 import { setup } from '@nuxt/test-utils'
 
