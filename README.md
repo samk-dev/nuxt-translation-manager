@@ -23,14 +23,7 @@ Simple and easy to use translation manager for `nuxt` and `nuxt-i18n` that allow
 1. Add `nuxt-translation-manager` dependency to your project
 
 ```bash
-# Using pnpm
-pnpm add -D nuxt-translation-manager
-
-# Using yarn
-yarn add --dev nuxt-translation-manager
-
-# Using npm
-npm install --save-dev nuxt-translation-manager
+npx nuxi@latest module add translation-manager
 ```
 
 2. Add `nuxt-translation-manager` to the `modules` section of `nuxt.config.ts`
