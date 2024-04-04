@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import csv from 'csv-parser'
 import logger from './logger'
 

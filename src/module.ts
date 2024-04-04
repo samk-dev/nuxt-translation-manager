@@ -1,4 +1,5 @@
 import { relative, resolve as pathResolve } from 'node:path'
+import fs from 'node:fs'
 import { defineNuxtModule, createResolver } from '@nuxt/kit'
 import { name, version } from '../package.json'
 import generateLocales from './generateLocales'
@@ -49,14 +50,24 @@ export default defineNuxtModule<ModuleOptions>({
       ? resolve(options.outputDir)
       : resolve(nuxt.options.srcDir, options.langDir as string)
 
-    try {
-      await generateLocales(csvFileFullPath, outputDir)
-    } catch (error) {
-      logger.error(error)
+    // dirty work around to not trigger the method when the module is
+    // generating it's own types then the method fails.
+    const currentDir = fs.readdirSync(resolve(nuxt.options.srcDir))
+    const isNuxtDir = currentDir.includes('app.vue')
+
+    if (isNuxtDir) {
+      try {
+        await generateLocales(csvFileFullPath, outputDir)
+      } catch (error) {
+        logger.error(error)
+      }
     }
 
     nuxt.hook('builder:watch', async (_event, path) => {
-      path = relative(nuxt.options.srcDir, pathResolve(nuxt.options.srcDir, path))
+      path = relative(
+        nuxt.options.srcDir,
+        pathResolve(nuxt.options.srcDir, path)
+      )
       if (path === csvFilePath) {
         try {
           await generateLocales(csvFileFullPath, outputDir)
