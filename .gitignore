@@ -54,3 +54,7 @@ coverage
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Dev files
+playground/locales/*.json
+test/fixtures/basic/locales/*.json
