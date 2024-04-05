@@ -10,8 +10,8 @@
 Simple and easy to use translation manager for `nuxt` and `nuxt-i18n` that allows to manage translations from a single CSV file.
 
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
-<!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/nuxt-translation-manager?file=playground%2Fapp.vue) -->
-<!-- - [📖 &nbsp;Documentation](https://example.com) -->
+- [🏀 Online playground](https://codesandbox.io/p/github/samk-dev/nuxt-translation-manager-module-usage-example/main)
+- [🐱 Playground repository](https://github.com/samk-dev/nuxt-translation-manager-module-usage-example)
 
 ## Features
 
@@ -24,6 +24,18 @@ Simple and easy to use translation manager for `nuxt` and `nuxt-i18n` that allow
 
 ```bash
 npx nuxi@latest module add translation-manager
+```
+
+## Manual Installation
+
+1. Add `nuxt-translation-manager` dependency to your project
+
+```bash
+npm install -D nuxt-translation-manager
+
+pnpm install -D nuxt-translation-manager
+
+yarn add -D nuxt-translation-manager
 ```
 
 2. Add `nuxt-translation-manager` to the `modules` section of `nuxt.config.ts`
@@ -133,11 +145,6 @@ pnpm run release
 ## Credits
 
 Inspired by [Quasalang CLI](https://github.com/dannyconnell/quasalang) by [Danny Connell](https://github.com/dannyconnell)
-
-## TODO
-
-- [] Generate a template for translations.csv file instead of creating it manually
-- [] Add a GUI manager to Nuxt Devtools
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-translation-manager/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
