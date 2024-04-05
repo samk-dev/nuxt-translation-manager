@@ -28,7 +28,7 @@ function generateLocales(
 
   return new Promise((resolve, reject) => {
     fs.createReadStream(csvFilePath)
-      .pipe(csv())
+      .pipe(csv({ skipComments: true }))
       .on('data', (row) => processRow(row))
       .on('end', () => {
         // Sort the keys alphabetically
