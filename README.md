@@ -72,6 +72,8 @@ This will generate a CSV file that looks like this:
 
 **Be sure to set the delimiter to comma in your csv editor** `,`
 
+**You can use comments in your csv file** using `#`
+
 ✨ Tip: you can use [Edit CSV Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=janisdd.vscode-edit-csv) to manage your csv file inside of `vscode`
 
 <details>
@@ -82,6 +84,11 @@ This will generate a CSV file that looks like this:
   hello,"Hello","Bonjour","Hallo"
   goodbye,"Goodbye","Au revoir","Auf Wiedersehen"
   thanks,"Thanks","Merci","Danke"
+  # COMMENTS TEST
+  comment-test,"Comment test","Test comentario","Test comentari"
+  ### MULTILINE COMMENT ###
+  ### ANOTHER COMMENT ####
+  comment-multi,"Comment test","Test comentario","Test comentari"
   ```
 
 </details>

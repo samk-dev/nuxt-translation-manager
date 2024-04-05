@@ -3,3 +3,8 @@ login,"Login","Acceder",Accedir
 logout,"Logout","Cerrar sesión",Tencar sesió
 tomorrow,"Tomorrow","Mañana",Demà
 hmr,"hmr","hmr",hmr
+# COMMENTS TEST
+comment-test,"Comment test","Test comentario","Test comentari"
+### MULTILINE COMMENT ###
+### ANOTHER COMMENT ####
+comment-multi,"Comment test","Test comentario","Test comentari"
