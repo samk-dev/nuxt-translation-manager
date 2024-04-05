@@ -1,6 +1,6 @@
 {
   "name": "nuxt-translation-manager",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Simple and easy to use translation manager for nuxt and nuxt-i18n that allows to manage translations from a single CSV file.",
   "repository": "samk-dev/nuxt-translation-manager",
   "license": "MIT",
