@@ -8,7 +8,8 @@ interface ColumnData {
 
 function generateLocales(
   csvFilePath: string,
-  outputDir: string
+  outputDir: string,
+  separator: string
 ): Promise<void> {
   logger.info('Generating translations...')
 
@@ -28,7 +29,7 @@ function generateLocales(
 
   return new Promise((resolve, reject) => {
     fs.createReadStream(csvFilePath)
-      .pipe(csv({ skipComments: true }))
+      .pipe(csv({ separator, skipComments: true }))
       .on('data', (row) => processRow(row))
       .on('end', () => {
         // Sort the keys alphabetically
