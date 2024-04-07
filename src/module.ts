@@ -24,6 +24,12 @@ export interface ModuleOptions {
    * @default 'langDir'
    */
   outputDir?: string
+  /**
+   * csv separator character
+   *
+   * @default ','
+   */
+  separator?: string
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -38,6 +44,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     langDir: 'locales',
+    separator: ',',
     translationFileName: 'translations'
   },
   async setup(options, nuxt) {
@@ -57,7 +64,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     if (isNuxtDir) {
       try {
-        await generateLocales(csvFileFullPath, outputDir)
+        await generateLocales(csvFileFullPath, outputDir, options.separator)
       } catch (error) {
         logger.error(error)
       }
@@ -70,7 +77,7 @@ export default defineNuxtModule<ModuleOptions>({
       )
       if (path === csvFilePath) {
         try {
-          await generateLocales(csvFileFullPath, outputDir)
+          await generateLocales(csvFileFullPath, outputDir, options.separator)
         } catch (error) {
           logger.error(error)
         }
