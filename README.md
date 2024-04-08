@@ -70,7 +70,7 @@ This will generate a CSV file that looks like this:
 
 **Be sure to use the format** `lang-code` in the header row e.g. `es-ES`
 
-**Be sure to set the delimiter to comma in your csv editor** `,`
+**Be sure to set the appropriate delimiter in your csv editor (comma by default)** `,`
 
 **You can use comments in your csv file** using `#`
 
@@ -120,6 +120,12 @@ interface ModuleOptions {
    * @default 'langDir'
    */
   outputDir?: string
+  /**
+   * csv separator character
+   *
+   * @default ','
+   */
+  separator?: string
 }
 ```
 
