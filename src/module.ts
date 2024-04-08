@@ -64,7 +64,11 @@ export default defineNuxtModule<ModuleOptions>({
 
     if (isNuxtDir) {
       try {
-        await generateLocales(csvFileFullPath, outputDir, options.separator)
+        await generateLocales(
+          csvFileFullPath,
+          outputDir,
+          options.separator as string
+        )
       } catch (error) {
         logger.error(error)
       }
@@ -77,7 +81,11 @@ export default defineNuxtModule<ModuleOptions>({
       )
       if (path === csvFilePath) {
         try {
-          await generateLocales(csvFileFullPath, outputDir, options.separator)
+          await generateLocales(
+            csvFileFullPath,
+            outputDir,
+            options.separator as string
+          )
         } catch (error) {
           logger.error(error)
         }
