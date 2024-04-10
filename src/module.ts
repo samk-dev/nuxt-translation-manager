@@ -4,6 +4,9 @@ import { defineNuxtModule, createResolver } from '@nuxt/kit'
 import { name, version } from '../package.json'
 import generateLocales from './generateLocales'
 import logger from './logger'
+import seekUnusedTranslations from './seekUnusedTranslations'
+
+import type { SeekOptions } from './seekUnusedTranslations'
 
 export interface ModuleOptions {
   /**
@@ -12,6 +15,12 @@ export interface ModuleOptions {
    * @default 'locales'
    */
   langDir?: string
+  /**
+   * where to look for translation keys
+   * 
+   * @default "[ '.', 'components', 'composables', 'content', 'layouts', 'pages', 'plugins', 'store' ]"
+  */
+  lintDirs?: string[]
   /**
    * csv file name without .csv file extension
    *
@@ -44,6 +53,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     langDir: 'locales',
+    lintDirs: [ '.', 'components', 'composables', 'content', 'layouts', 'pages', 'plugins', 'store' ],
     separator: ',',
     translationFileName: 'translations'
   },
@@ -62,12 +72,20 @@ export default defineNuxtModule<ModuleOptions>({
     const currentDir = fs.readdirSync(resolve(nuxt.options.srcDir))
     const isNuxtDir = currentDir.includes('app.vue')
 
-    if (isNuxtDir) {
+    const runIf = async (condition: boolean) => {
+      if (!condition) return
+
       try {
         await generateLocales(
           csvFileFullPath,
           outputDir,
           options.separator as string
+        )
+
+        await seekUnusedTranslations(
+          csvFileFullPath,
+          nuxt.options.srcDir,
+          options as SeekOptions
         )
       } catch (error) {
         logger.error(error)
@@ -79,17 +97,10 @@ export default defineNuxtModule<ModuleOptions>({
         nuxt.options.srcDir,
         pathResolve(nuxt.options.srcDir, path)
       )
-      if (path === csvFilePath) {
-        try {
-          await generateLocales(
-            csvFileFullPath,
-            outputDir,
-            options.separator as string
-          )
-        } catch (error) {
-          logger.error(error)
-        }
-      }
+
+      runIf(path === csvFilePath)
     })
+
+    runIf(isNuxtDir)
   }
 })

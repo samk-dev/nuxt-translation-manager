@@ -109,6 +109,12 @@ interface ModuleOptions {
    */
   langDir?: string
   /**
+   * where to look for translation keys
+   * 
+   * @default []
+  */
+  lintDirs?: string[]
+  /**
    * csv file name without .csv file extension
    *
    * @default 'translations'
