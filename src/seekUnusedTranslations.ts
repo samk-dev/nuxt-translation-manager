@@ -10,7 +10,11 @@ export interface SeekOptions {
 
 const REGEX_FILE_EXTENSIONS: RegExp = /\.(json|ts|vue|yml)$/i
 const SEGMENT_MIN_LENGTH: number = 3
-const SEGMENT_PASS_THRESHOLD: number = 3 / 4
+
+function segmentPattern (segment: string, index: number, array: string[]): string {
+  segment = segment.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+  return `${ index < array.length - 1 ? `\\b${ segment }\\b_` : `\\b${ segment }\\b` }`
+}
 
 async function seekUnusedTranslations(csvFilePath: string, srcDir: string, { lintDirs, separator }: SeekOptions): Promise<void> {
   if (lintDirs.length < 1) {
@@ -29,37 +33,37 @@ async function seekUnusedTranslations(csvFilePath: string, srcDir: string, { lin
       .on('error', (error) => reject(error))
   })
 
-  const foundKeys: Record<string, number> = {}
+  const foundKeys: Set<string> = new Set<string>()
   const validKeys: string[] = allKeys.filter(key => key.split('_').length >= SEGMENT_MIN_LENGTH)
-
+  
   for (const dir of lintDirs) {
-    const root: string = resolve(srcDir, dir)
+    const root: string = resolve(srcDir, dir as string)
     const files: string[] = await fs.promises.readdir(root)
 
-    for (const file: string of files) {
-      if (!REGEX_FILE_EXTENSIONS.test(file)) continue
+    for (const file of files) {
+      if (!REGEX_FILE_EXTENSIONS.test(file as string)) continue
 
-      const path: string = resolve(root, file)
+      const path: string = resolve(root, file as string)
       const text: string = await fs.promises.readFile(path, 'utf-8')
 
       validKeys.forEach((key: string) => {
-        const segments: string[] = key.split('_')
-        const { length }: number = segments.filter(segment => text.includes(segment))
-        if (length > segments.length * SEGMENT_PASS_THRESHOLD)) foundKeys[key] = (foundKeys[key] || 0) + 1
+        const segments: string[] = key.split('_').map(segmentPattern)
+        const regex: RegExp = new RegExp(segments.join(''), 'i')
+        if (regex.test(text)) foundKeys.add(key)
       })
     }
   }
 
-  const found: string[] = validKeys.filter(key => !Object.keys(foundKeys).includes(key))
-  const print: Function = found.length ? logger.warn : logger.info
+  const notUsed: string[] = validKeys.filter((key: string) => !foundKeys.has(key))
+  const print: Function = notUsed.length ? logger.warn : logger.info
   const skipped: number = allKeys.length - validKeys.length
 
-  let status: string = found.length?
-    `Found ${ found.length } unused translations` :
+  let status: string = notUsed.length?
+    `Found ${ notUsed.length } unused translations` :
     'No unused translations found'
 
   if (skipped > 0) status += ` (${ skipped } skipped)`
-  if (found.length > 0) status = `${ status }: ${ found.join(', ') }`
+  if (notUsed.length > 0) status = `${ status }: ${ notUsed.join(', ') }`
   print(status)
 }
 
