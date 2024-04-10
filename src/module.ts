@@ -18,7 +18,7 @@ export interface ModuleOptions {
   /**
    * where to look for translation keys
    * 
-   * @default "[ '.', 'components', 'composables', 'content', 'layouts', 'pages', 'plugins', 'store' ]"
+   * @default "[]"
   */
   lintDirs?: string[]
   /**
@@ -53,7 +53,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     langDir: 'locales',
-    lintDirs: [ '.', 'components', 'composables', 'content', 'layouts', 'pages', 'plugins', 'store' ],
+    lintDirs: [],
     separator: ',',
     translationFileName: 'translations'
   },
