@@ -13,7 +13,12 @@ const SEGMENT_MIN_LENGTH: number = 3
 const SEGMENT_PASS_THRESHOLD: number = 3 / 4
 
 async function seekUnusedTranslations(csvFilePath: string, srcDir: string, { lintDirs, separator }: SeekOptions): Promise<void> {
-  if (lintDirs.length < 1) return
+  if (lintDirs.length < 1) {
+    logger.info('No directories specified for linting.')
+    return
+  }
+
+  logger.info('Seeking unused translations…')
   const allKeys: string[] = []
 
   await new Promise<void>((resolve, reject): void => {
