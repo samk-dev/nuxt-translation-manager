@@ -3,7 +3,10 @@ import csv from 'csv-parser'
 import logger from './logger'
 
 interface LocaleTranslations {
-  [key: string]: string | { description?: string, name?: string }
+  [key: string]: string | {
+    description?: string
+    name?: string
+  }
 }
 
 const REGEX_SITE_CONFIG: RegExp = /^NUXT_SITE_CONFIG_(DESCRIPTION|NAME)$/
@@ -17,36 +20,38 @@ function generateLocales(
   logger.info('Generating translations...')
   const columns: Record<string, LocaleTranslations> = {}
   
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject): void => {
     fs.createReadStream(csvFilePath)
       .pipe(csv({ separator, skipComments: true }))
-      .on('data', (row: Record<string, string>) => {
+      .on('data', (row: Record<string, string>): void => {
         const key: string = row.Key.trim()
 
-        Object.entries(row).forEach(([column, value]) => {
-          if (column === 'Key' || !(value as string).trim()) return
-          if (!columns[column]) columns[column] = {}
+        Object.entries(row).forEach(([column, value]): void => {
+          value = (value as string).trim()
+
+          if (column === 'Key' || value.length === 0) return
+          if (!columns[column]) columns[column] = {} as LocaleTranslations
 
           if (!REGEX_SITE_CONFIG.test(key)) {
-            columns[column][key] = value.trim()
+            columns[column][key] = value
             return
           }
 
           const configKey: string = key.replace('NUXT_SITE_CONFIG_', '').toLowerCase()
-          if (!columns[column][SITE_CONFIG_KEY]) columns[column][SITE_CONFIG_KEY] = {}
-          columns[column][SITE_CONFIG_KEY][configKey] = value.trim()
+          if (!columns[column][SITE_CONFIG_KEY]) columns[column][SITE_CONFIG_KEY] = {} as { [key: string]: string }
+          (columns[column][SITE_CONFIG_KEY] as { [key: string]: string })[configKey] = value
         })
       })
-      .on('end', () => {
-        Object.keys(columns).forEach((header) => {
-          const outputPath = `${outputDir}/${header}.json`
+      .on('end', (): void => {
+        Object.keys(columns).forEach((header: string): void => {
+          const outputPath: string = `${outputDir}/${header}.json`
           fs.writeFileSync(outputPath, JSON.stringify(columns[header], null, 2), 'utf-8')
         })
 
         logger.success('Translations generated successfully')
         resolve()
       })
-      .on('error', (error) => reject(error))
+      .on('error', (error: Error): void => reject(error))
   })
 }
 
