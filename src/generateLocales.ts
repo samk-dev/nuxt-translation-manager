@@ -2,21 +2,18 @@ import fs from 'node:fs'
 import csv from 'csv-parser'
 import logger from './logger'
 
+interface ColumnData {
+  [key: string]: string
+}
+
 interface LocaleTranslations {
-  [key: string]: string | {
-    description?: string
-    name?: string
-  }
+  [key: string]: string | { description?: string, name?: string }
 }
 
 const REGEX_SITE_CONFIG: RegExp = /^NUXT_SITE_CONFIG_(DESCRIPTION|NAME)$/
 const SITE_CONFIG_KEY: string = 'nuxtSiteConfig'
 
-function generateLocales(
-  csvFilePath: string,
-  outputDir: string,
-  separator: string
-): Promise<void> {
+function generateLocales(csvFilePath: string, outputDir: string, separator: string): Promise<void> {
   logger.info('Generating translations...')
   const columns: Record<string, LocaleTranslations> = {}
   
@@ -38,8 +35,8 @@ function generateLocales(
           }
 
           const configKey: string = key.replace('NUXT_SITE_CONFIG_', '').toLowerCase()
-          if (!columns[column][SITE_CONFIG_KEY]) columns[column][SITE_CONFIG_KEY] = {} as { [key: string]: string }
-          (columns[column][SITE_CONFIG_KEY] as { [key: string]: string })[configKey] = value
+          if (!columns[column][SITE_CONFIG_KEY]) columns[column][SITE_CONFIG_KEY] = {} as ColumnData
+          (columns[column][SITE_CONFIG_KEY] as ColumnData)[configKey] = value
         })
       })
       .on('end', (): void => {
