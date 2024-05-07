@@ -40,6 +40,15 @@ function generateLocales(csvFilePath: string, outputDir: string, separator: stri
         })
       })
       .on('end', (): void => {
+        // Sort keys alphabetically
+        Object.keys(columns).forEach((header: string): void => {
+          columns[header] = Object.fromEntries(
+            Object.entries(columns[header]).sort(([a], [b]): number =>
+              a.localeCompare(b)
+            )
+          )
+        })
+
         Object.keys(columns).forEach((header: string): void => {
           const outputPath: string = `${outputDir}/${header}.json`
           fs.writeFileSync(outputPath, JSON.stringify(columns[header], null, 2), 'utf-8')
