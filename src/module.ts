@@ -39,7 +39,7 @@ export default defineNuxtModule<ModuleOptions>({
     configKey: 'translation-manager',
     compatibility: {
       bridge: false,
-      nuxt: '^3.0.0'
+      nuxt: '>=3.0.0'
     }
   },
   defaults: {
