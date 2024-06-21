@@ -9,9 +9,13 @@
 
 Simple and easy to use translation manager for `nuxt` and `nuxt-i18n` that allows to manage translations from a single CSV file.
 
+`Nuxt v4 Ready` ✨
+
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
 - [🏀 Online playground](https://codesandbox.io/p/github/samk-dev/nuxt-translation-manager-module-usage-example/main)
-- [🐱 Playground repository](https://github.com/samk-dev/nuxt-translation-manager-module-usage-example)
+- [🐱 Playground repository with Nuxt v3](https://github.com/samk-dev/nuxt-translation-manager-module-usage-example)
+
+For Nuxt V4 example you can check this starter using [Nuxt V4 && nuxt-i18n module](https://github.com/samk-dev/nuxt-init-v4)
 
 ## Features
 
@@ -42,9 +46,7 @@ yarn add -D nuxt-translation-manager
 
 ```js
 export default defineNuxtConfig({
-  modules: [
-    'nuxt-translation-manager'
-  ]
+  modules: ['nuxt-translation-manager']
 })
 ```
 
@@ -62,11 +64,11 @@ login,"Login","Acceder","Accedir"' > path-to-your-langDir/translations.csv
 
 This will generate a CSV file that looks like this:
 
-| Key     | en-US          | fr         | de              |
-|---------|----------------|------------|-----------------|
-| hello   | Hello          | Bonjour    | Hallo           |
-| goodbye | Goodbye        | Au revoir  | Auf Wiedersehen |
-| thanks  | Thanks         | Merci      | Danke           |
+| Key     | en-US   | fr        | de              |
+| ------- | ------- | --------- | --------------- |
+| hello   | Hello   | Bonjour   | Hallo           |
+| goodbye | Goodbye | Au revoir | Auf Wiedersehen |
+| thanks  | Thanks  | Merci     | Danke           |
 
 **Be sure to use the format** `lang-code` in the header row e.g. `es-ES`
 
@@ -79,17 +81,17 @@ This will generate a CSV file that looks like this:
 <details>
   <summary>View raw csv code</summary>
 
-  ```csv
-  Key,"English, en-US","French, fr","German, de"
-  hello,"Hello","Bonjour","Hallo"
-  goodbye,"Goodbye","Au revoir","Auf Wiedersehen"
-  thanks,"Thanks","Merci","Danke"
-  # COMMENTS TEST
-  comment-test,"Comment test","Test comentario","Test comentari"
-  ### MULTILINE COMMENT ###
-  ### ANOTHER COMMENT ####
-  comment-multi,"Comment test","Test comentario","Test comentari"
-  ```
+```csv
+Key,"English, en-US","French, fr","German, de"
+hello,"Hello","Bonjour","Hallo"
+goodbye,"Goodbye","Au revoir","Auf Wiedersehen"
+thanks,"Thanks","Merci","Danke"
+# COMMENTS TEST
+comment-test,"Comment test","Test comentario","Test comentari"
+### MULTILINE COMMENT ###
+### ANOTHER COMMENT ####
+comment-multi,"Comment test","Test comentario","Test comentari"
+```
 
 </details>
 
@@ -160,14 +162,12 @@ pnpm run release
 Inspired by [Quasalang CLI](https://github.com/dannyconnell/quasalang) by [Danny Connell](https://github.com/dannyconnell)
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-translation-manager/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/nuxt-translation-manager
-
 [npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-translation-manager.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/nuxt-translation-manager
-
 [license-src]: https://img.shields.io/npm/l/nuxt-translation-manager.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/nuxt-translation-manager
-
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
