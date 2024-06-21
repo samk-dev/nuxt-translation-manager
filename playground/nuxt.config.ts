@@ -1,5 +1,7 @@
 export default defineNuxtConfig({
   modules: ['../src/module'],
-  'translation-manager': {},
+  'translation-manager': {
+    lintDirs: ['.'],
+  },
   devtools: { enabled: true }
 })

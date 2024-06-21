@@ -109,6 +109,12 @@ interface ModuleOptions {
    */
   langDir?: string
   /**
+   * where to look for translation keys (with [micromatch](https://github.com/micromatch/micromatch) pattern support)
+   * 
+   * @default []
+  */
+  lintGlobs?: string[]
+  /**
    * csv file name without .csv file extension
    *
    * @default 'translations'

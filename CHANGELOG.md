@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.1.1
+
+[compare changes](https://github.com/samk-dev/nuxt-translation-manager/compare/v1.1.0...v1.1.1)
+
+### 🩹 Fixes
+
+- Typescript complaining about possible undefined value ([210116c](https://github.com/samk-dev/nuxt-translation-manager/commit/210116c))
+
+### ❤️ Contributors
+
+- Samk-dev ([@samk-dev](http://github.com/samk-dev))
+
 ## v1.1.0
 
 [compare changes](https://github.com/samk-dev/nuxt-translation-manager/compare/v1.0.1...v1.1.0)
