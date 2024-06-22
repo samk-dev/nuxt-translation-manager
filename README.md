@@ -95,6 +95,31 @@ comment-multi,"Comment test","Test comentario","Test comentari"
 
 </details>
 
+## Special keys
+
+You can specify the optional `NUXT_SITE_CONFIG_NAME` and `NUXT_SITE_CONFIG_DESCRIPTION` keys in order to take advantage of the special `nuxtSiteConfig` [i18n translation object](https://nuxtseo.com/site-config/integrations/i18n#usage). Specifying any of those keys will include them inside that object when the JSON text is rendered out.
+
+source:
+
+```csv
+Key,'en-US','es-MX'
+TEST_KEY,'Test key','Llave de prueba'
+NUXT_SITE_CONFIG_NAME,'Site name','Nombre del sitio'
+NUXT_SITE_CONFIG_DESCRIPTION,'Site description','Descripción del sitio'
+```
+becomes (`en-US`):
+
+```json
+{
+  "TEST_KEY": "Test key",
+  "nuxtSiteConfig": {
+    "name": "Site name",
+    "description": "Site description"
+  }
+}
+
+```
+
 ## Options
 
 ```ts
