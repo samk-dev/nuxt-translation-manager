@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v1.1.1
+
+[compare changes](https://github.com/samk-dev/nuxt-translation-manager/compare/v1.1.0...v1.1.1)
+
+### 🩹 Fixes
+
+- Typescript complaining about possible undefined value ([210116c](https://github.com/samk-dev/nuxt-translation-manager/commit/210116c))
+
+### 📖 Documentation
+
+- Prepare readme for nuxt v4 ([4748491](https://github.com/samk-dev/nuxt-translation-manager/commit/4748491))
+
+### 🏡 Chore
+
+- Indicate compatibility with new v4 major ([df5246e](https://github.com/samk-dev/nuxt-translation-manager/commit/df5246e))
+- **dev-deps:** Update module dependencies ([76cbd1d](https://github.com/samk-dev/nuxt-translation-manager/commit/76cbd1d))
+- Update playground to v4 format ([46eb4f6](https://github.com/samk-dev/nuxt-translation-manager/commit/46eb4f6))
+- Deps update ([c708842](https://github.com/samk-dev/nuxt-translation-manager/commit/c708842))
+
+### ❤️ Contributors
+
+- Samk-dev ([@samk-dev](http://github.com/samk-dev))
+- Daniel Roe ([@danielroe](http://github.com/danielroe))
+
 ## v1.1.0
 
 [compare changes](https://github.com/samk-dev/nuxt-translation-manager/compare/v1.0.1...v1.1.0)
